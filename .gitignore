@@ -3,3 +3,5 @@ target
 blogged.iml
 .vscode
 .settings
+.classpath
+.project

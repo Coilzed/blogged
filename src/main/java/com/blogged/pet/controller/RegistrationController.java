@@ -35,7 +35,7 @@ public class RegistrationController {
 
     @GetMapping
     public String showRegistrationForm(Model model) {
-        return "user/register";
+        return "common/register";
     }
 
     @PostMapping
@@ -48,9 +48,9 @@ public class RegistrationController {
         }
         if (result.hasErrors()) {
             LOG.debug("Account contains mistakes: " + result);
-            return "user/register";
+            return "redirect:/register?exists";
         }
         userService.save(userDto);
-        return "redirect:/register?success";
+        return "redirect:/login?success";
     }
 }
