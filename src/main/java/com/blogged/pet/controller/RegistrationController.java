@@ -1,23 +1,22 @@
 package com.blogged.pet.controller;
 
-import com.blogged.pet.domain.User;
-import com.blogged.pet.dto.UserRegistrationDto;
-import com.blogged.pet.service.UserService;
+import java.util.Objects;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-
-import javax.validation.Valid;
+import com.blogged.pet.domain.Account;
+import com.blogged.pet.dto.AccountRegistrationDto;
+import com.blogged.pet.service.UserService;
 
 @Controller
 @RequestMapping("/register")
@@ -26,31 +25,31 @@ public class RegistrationController {
     private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
 
     @Autowired
-    private UserService userService;
+    private UserService accountService;
 
-    @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    @ModelAttribute("account")
+    public AccountRegistrationDto accountRegistrationDto() {
+        return new AccountRegistrationDto();
     }
 
     @GetMapping
-    public String showRegistrationForm(Model model) {
+    public String getRegistrationPage() {
         return "common/register";
     }
 
     @PostMapping
     public String registerUserAccount
-            (@ModelAttribute("user") @Valid UserRegistrationDto userDto, BindingResult result) {
-        User user = userService.findByEmail(userDto.getEmail());
-        if (user != null) {
+            (@ModelAttribute("user") @Valid AccountRegistrationDto userDto, BindingResult result) {
+        Account account = accountService.findByEmail(userDto.getEmail());
+        if (account != null) {
             LOG.debug("User already exists");
-            result.rejectValue("email", "409", "Email is registered already");
+            result.reject("email.exists");
         }
-        if (result.hasErrors()) {
+        if (result.hasErrors() || Objects.isNull(accountService.createAccount(userDto))) {
             LOG.debug("Account contains mistakes: " + result);
-            return "redirect:/register?exists";
+            return "redirect:/register?invalidcred";
         }
-        userService.save(userDto);
+        LOG.debug("Registration success");
         return "redirect:/login?success";
     }
 }

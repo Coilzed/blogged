@@ -7,20 +7,20 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col align-self-center">
-                <h1>Login</h1>
+                <h1 th:text="#{login}"></h1>
                 <div th:if="${param.error}">
-                    <div class="alert alert-danger">Invalid username or password.</div>
+                    <div class="alert alert-danger" th:text="#{event.wrong.credentials}"></div>
                 </div>
                 <div th:if="${param.success}">
-                    <div class="alert alert-info">You've successfully registered to our awesome app!</div>
+                    <div class="alert alert-info" th:text="#{event.success.registration}"></div>
                 </div>
                 <div th:if="${param.logout}">
-                    <div class="alert alert-info">You have been logged out.</div>
+                    <div class="alert alert-info" th:text="#{event.logout}"></div>
                 </div>
                 <div class="form-group">
                     <label for="emailInput" th:text="#{base.email}"></label>
                     <input type="text" class="form-control" id="emailInput" aria-describedby="emailHelp"
-                           name="username">
+                           name="email">
                     <small id="emailHelp" class="form-text text-muted" th:text="#{base.cred.secure}"></small>
                 </div>
                 <div class="form-group">
@@ -29,9 +29,7 @@
                 </div>
                 <div class="mr-auto">
                     <input type="submit" class="btn btn-primary" th:value="#{base.submit}"/>
-                    <div class="form-group">
-                        <span>New user? <a href="/" th:href="@{/register}">Register here</a></span>
-                    </div>
+                    <span><a href="/" th:href="@{/register}" th:text="#{question.register}"></a></span>
                 </div>
             </div>
             <div class="col-4"></div>

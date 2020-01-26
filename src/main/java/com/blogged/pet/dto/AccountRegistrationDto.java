@@ -1,18 +1,16 @@
 package com.blogged.pet.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
-public class UserRegistrationDto {
+public class AccountRegistrationDto {
 
-//    @Email
-    @NotEmpty
+    @NotBlank
     private String email;
 
-    @NotEmpty
+    @NotBlank
     private String password;
 
-    @NotEmpty
+    @NotBlank
     private String confirmPassword;
 
     public String getEmail() {

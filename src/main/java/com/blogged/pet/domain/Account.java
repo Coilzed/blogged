@@ -1,22 +1,31 @@
 package com.blogged.pet.domain;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-
-import java.io.Serializable;
-
-import java.time.LocalDate;
-
-@Entity
-@Table(name = "`user`")
-public class User implements Serializable {
+@Entity(name = "Account")
+@Table(name = "account")
+public class Account implements Serializable {
 
     private static final long serialVersionUID = 3157142951964534069L;
 
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "account_id")
     private Long id;
 
     @Column(name = "email", length = 65, nullable = false, unique = true)
@@ -34,10 +43,6 @@ public class User implements Serializable {
     @Column(name = "register_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate registerDate;
-
-    @Column(name = "last_login")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate lastLogin;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -90,14 +95,6 @@ public class User implements Serializable {
         this.registerDate = registerDate;
     }
 
-    public LocalDate getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(LocalDate lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -115,7 +112,6 @@ public class User implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 ", registerDate=" + registerDate +
-                ", lastLogin=" + lastLogin +
                 ", role=" + role +
                 '}';
     }

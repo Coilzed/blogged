@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body})}">
+
+<body>
+<div class="container mt-5">
+    <form th:action="@{/user/personal/info}" th:object="${info}" method="post">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">Congrats</div>
+                </div>
+                <div class="form-group">
+                    <label for="email"></label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="firstName"></label>
+                    <input type="text" class="form-control" id="firstName" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName"></label>
+                    <input type="text" class="form-control" id="lastName" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="oldPassword"></label>
+                    <input type="text" class="form-control" id="oldPassword" name="oldPassword">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword"></label>
+                    <input type="text" class="form-control" id="newPassword" name="newPassword">
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword"></label>
+                    <input type="text" class="form-control" id="confirmNewPassword" name="confirmNewPassword">
+                </div>
+                <div class="mr-auto">
+                    <input type="submit" class="btn btn-primary" value="Mock"/>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,13 +1,16 @@
 package com.blogged.pet.service;
 
-import com.blogged.pet.domain.User;
-import com.blogged.pet.dto.UserRegistrationDto;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.blogged.pet.domain.Account;
+import com.blogged.pet.dto.AccountRegistrationDto;
+import com.blogged.pet.dto.PersonalInfoDto;
 
 public interface UserService extends UserDetailsService {
 
-    User findByEmail(String email);
+    Account findByEmail(String email);
 
-    User save(UserRegistrationDto userDto);
+    Account createAccount(AccountRegistrationDto userDto);
+
+    Account changeUserInfo(PersonalInfoDto personalInfoDto, String email);
 }
