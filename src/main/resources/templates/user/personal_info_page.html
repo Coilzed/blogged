@@ -8,34 +8,38 @@
             <div class="col-3"></div>
             <div class="col-6">
                 <div th:if="${param.success}">
-                    <div class="alert alert-info">Congrats</div>
+                    <div class="alert alert-info" th:text="#{info.success}"></div>
                 </div>
+                <div th:if="${param.fail}">
+                    <div class="alert alert-info" th:text="#{info.fail}">Congrats</div>
+                </div>
+                <h1 th:text="#{base.info.change}"></h1>
                 <div class="form-group">
-                    <label for="email"></label>
+                    <label for="email" th:text="#{base.email}"></label>
                     <input type="text" class="form-control" id="email" name="email">
                 </div>
                 <div class="form-group">
-                    <label for="firstName"></label>
+                    <label for="firstName" th:text="#{base.first.name}"></label>
                     <input type="text" class="form-control" id="firstName" name="firstName">
                 </div>
                 <div class="form-group">
-                    <label for="lastName"></label>
+                    <label for="lastName" th:text="#{base.last.name}"></label>
                     <input type="text" class="form-control" id="lastName" name="lastName">
                 </div>
                 <div class="form-group">
-                    <label for="oldPassword"></label>
+                    <label for="oldPassword" th:text="#{base.old.password}"></label>
                     <input type="text" class="form-control" id="oldPassword" name="oldPassword">
                 </div>
                 <div class="form-group">
-                    <label for="newPassword"></label>
+                    <label for="newPassword" th:text="#{base.new.password}"></label>
                     <input type="text" class="form-control" id="newPassword" name="newPassword">
                 </div>
                 <div class="form-group">
-                    <label for="confirmNewPassword"></label>
+                    <label for="confirmNewPassword" th:text="#{base.confirm.new.password}"></label>
                     <input type="text" class="form-control" id="confirmNewPassword" name="confirmNewPassword">
                 </div>
                 <div class="mr-auto">
-                    <input type="submit" class="btn btn-primary" value="Mock"/>
+                    <input type="submit" class="btn btn-primary" th:value="#{base.change}"/>
                 </div>
             </div>
             <div class="col-3"></div>

@@ -27,6 +27,6 @@ public class PersonalInfoController {
         if (Objects.nonNull(userService.changeUserInfo(personalInfoDto, principal.getName()))) {
             return "redirect:/user/personal/info?success";
         }
-        return "/user/personal/info";
+        return "/user/personal/info?fail";
     }
 }

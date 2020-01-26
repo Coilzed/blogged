@@ -40,7 +40,7 @@ public class ContentController {
         Account byEmail = userService.findByEmail(principal.getName());
         if (result.hasErrors() || Objects.isNull(contentService.createContent(contentDto, byEmail))) {
             LOG.debug("Content contains errors");
-            result.reject("content.incorrect");
+            return "redirect:/user/content/create?fail";
         }
         return "redirect:/user/content/create?success";
     }

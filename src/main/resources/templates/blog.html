@@ -3,9 +3,15 @@
       th:replace="~{fragments/layout :: layout (~{::body})}">
 
 <body>
-    <div class="container" th:each="content : ${contentList}">
-        <h1 th:text="${content.header}"></h1>
-        <p th:text="${content.text}"></p>
+    <div class="container mt-4" th:each="content : ${contentList}">
+        <div class="card">
+            <div class="card-header">
+                <h2 th:text="${content.header}"></h2>
+            </div>
+            <div class="card-body">
+                <h5 th:text="${content.text}"></h5>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -43,11 +43,11 @@ public class RegistrationController {
         Account account = accountService.findByEmail(userDto.getEmail());
         if (account != null) {
             LOG.debug("User already exists");
-            result.reject("email.exists");
+            return "redirect:/register?exists";
         }
         if (result.hasErrors() || Objects.isNull(accountService.createAccount(userDto))) {
             LOG.debug("Account contains mistakes: " + result);
-            return "redirect:/register?invalidcred";
+            return "redirect:/register?invalidcredentials";
         }
         LOG.debug("Registration success");
         return "redirect:/login?success";
